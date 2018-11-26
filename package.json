@@ -1,0 +1,21 @@
+{
+    "name": "node-demo",
+    "version": "1.0.0",
+    "description": "node demo api",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "deploy": " — zip-file fileb://Lambda-Deployment.zip",
+        "predeploy": "*"
+    },
+    "keywords": [
+        "postgres"
+    ],
+    "author": "Sandeep Singh",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.16.4",
+        "pg": "^6.1.2",
+        "zip": "~1.1.1"
+    }
+}
