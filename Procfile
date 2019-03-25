@@ -1,2 +1,2 @@
 web: node .
-release: sequelize db:migrate
+release: db:migrate

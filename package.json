@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node index.js",
-    "db:migrate": "sequelize db:migrate",
+    "db:migrate": "node_module/.bin/sequelize db:migrate",
     "db:unmigrate": "sequelize db:migrate:undo",
     "db:seed": "sequelize db:seed:all"
   },
