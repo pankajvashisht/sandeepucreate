@@ -1,2 +1,2 @@
 web: node .
-release: npm run db:migrate
+release: sequelize db:migrate
