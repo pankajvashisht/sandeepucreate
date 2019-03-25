@@ -2,18 +2,27 @@
   "name": "test-app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "db:migrate": "sequelize db:migrate",
+    "db:unmigrate": "sequelize db:migrate:undo",
+    "db:seed": "sequelize db:seed:all"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^3.0.5",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
+    "express-validator": "^5.3.1",
     "http": "0.0.0",
     "newrelic": "^5.0.0",
-    "rollbar": "^2.5.1"
+    "path": "^0.12.7",
+    "pg": "^7.9.0",
+    "rollbar": "^2.5.1",
+    "sequelize": "^5.1.0",
+    "yn": "^3.0.0"
   },
   "engines": {
     "node": "8.11.x"

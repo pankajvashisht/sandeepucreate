@@ -1,24 +1,19 @@
-require('newrelic');
-const dotenv = require('dotenv');
-dotenv.load();
-const express = require('express')
-const Rollbar = require('rollbar')
+const express = require('express');
+const { createUsersRoute } = require('./src/infra/http/routes/users/index.js');
 
-var rollbar = new Rollbar(process.env.ROLLBAR_ACCESS_TOKEN);
-const app = express()
-const port = process.env.PORT || 3000
+const createApp = ({    
+  dal,  
+}) => {
+  const app = express();
 
-app.get('/', (req, res) => res.send('Hello World !!'))
+  const usersRoute = createUsersRoute({ dal });
+  
+  app.use(bodyParser.json());
+  app.use(bodyParserJsonError());
 
-app.get('/error', (req, res) =>{
-    try {
-        throw new Error('something bad happened')
-    } catch (error) {
-        rollbar.error(error)
-    }
-    res.send('Error posted to rollbar')
- })
+  app.use('/users', usersRoute); 
 
-app.use(rollbar.errorHandler());
+  return app;
+};
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+module.exports = { createApp };
