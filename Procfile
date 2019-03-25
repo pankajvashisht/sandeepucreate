@@ -1,2 +1,2 @@
 web: node .
-release: db:migrate
+release: node_modules/.bin/sequelize db:migrate
