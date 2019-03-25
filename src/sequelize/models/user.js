@@ -30,6 +30,30 @@ const createUserModel = (sequelize, { STRING, UUIDV4, UUID }) => {
     {
       freezeTableName: true,
       timestamps: false,      
+      hooks: {
+        beforeCreate: async instance => {
+          const password = instance.get('password');
+          if (password) {
+            const hash = await hashPassword(password);
+            instance.set('password', hash);
+          }
+
+          const email = instance.get('email');
+          instance.set('email', email.toLowerCase());
+        },
+        beforeUpdate: async instance => {
+          if (instance.changed('password')) {
+            const password = instance.get('password');
+            const hash = await hashPassword(password);
+            instance.set('password', hash);
+          }
+
+          if (instance.changed('email')) {
+            const email = instance.get('email');
+            instance.set('email', email.toLowerCase());
+          }
+        },
+      },
     },
   );
 
